@@ -1,5 +1,43 @@
+import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import NotFound from './404';
+
+const Kanban = React.lazy(() => import('./Kanban'));
+const Register = React.lazy(() => import('./Register'));
+const Login = React.lazy(() => import('./Login'));
+
 function App() {
-	return <h1 className="text-3xl font-bold underline">Hello world!</h1>;
+	return (
+		<BrowserRouter>
+			<Routes>
+				<Route path="*" element={<NotFound />} />
+				<Route
+					path="/"
+					element={
+						<React.Suspense fallback={<>Loading...</>}>
+							<Kanban />
+						</React.Suspense>
+					}
+				/>
+				<Route
+					path="/register"
+					element={
+						<React.Suspense fallback={<>Loading...</>}>
+							<Register />
+						</React.Suspense>
+					}
+				/>
+				<Route
+					path="/login"
+					element={
+						<React.Suspense fallback={<>Loading...</>}>
+							<Login />
+						</React.Suspense>
+					}
+				/>
+			</Routes>
+		</BrowserRouter>
+	);
 }
 
 export default App;
