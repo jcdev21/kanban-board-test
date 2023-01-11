@@ -1,8 +1,17 @@
 import FormRegister from '../modules/auth/FormRegister';
+import { createUser } from '../services/auth.service';
 
 export default function Register() {
-	const handleRegister = (values: { [key: string]: string }) => {
-		console.log(values);
+	const handleRegister = async (values: { [key: string]: string }) => {
+		const payload = {
+			name: values.name,
+			email: values.email,
+			password: values.password,
+			password_confirmation: values.password,
+		};
+
+		const result = await createUser(payload);
+		console.log(result);
 	};
 
 	return (

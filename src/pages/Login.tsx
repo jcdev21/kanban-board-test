@@ -1,8 +1,15 @@
 import FormLogin from '../modules/auth/FormLogin';
+import { login } from '../services/auth.service';
 
 export default function Login() {
-	const handleLogin = (values: { [key: string]: string }) => {
-		console.log(values);
+	const handleLogin = async (values: { [key: string]: string }) => {
+		const payload = {
+			email: values.email,
+			password: values.password,
+		};
+
+		const result = await login(payload);
+		console.log(result);
 	};
 
 	return (

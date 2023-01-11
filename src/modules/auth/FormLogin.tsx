@@ -9,9 +9,10 @@ export default function FormLogin({ onSubmit }: FormLoginType) {
 	return (
 		<CustomForm onSubmit={onSubmit}>
 			<TextField
-				name="username"
-				label="Username"
-				placeholder="Username"
+				name="email"
+				type="email"
+				label="Email"
+				placeholder="Email"
 			/>
 			<TextField
 				name="password"
