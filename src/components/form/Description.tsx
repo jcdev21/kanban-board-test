@@ -5,6 +5,7 @@ import type { DescriptionPropsType } from '../../types/form.type';
 export default function Description({
 	name,
 	label,
+	labelBold = false,
 	placeholder,
 	className = 'w-full',
 }: DescriptionPropsType) {
@@ -19,7 +20,10 @@ export default function Description({
 			{label ? (
 				<label
 					htmlFor=""
-					className="inline-block text-[12px] leading-5"
+					className={clsx(
+						'inline-block text-[12px] leading-5',
+						labelBold && 'font-bold'
+					)}
 				>
 					{label}
 				</label>

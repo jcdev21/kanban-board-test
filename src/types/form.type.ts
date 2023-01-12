@@ -11,6 +11,7 @@ export type CustomFormPropsType = {
 type CommonFieldType = {
 	name: string;
 	label?: string;
+	labelBold?: boolean;
 	placeholder?: string;
 	className?: string;
 };

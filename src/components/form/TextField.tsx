@@ -6,6 +6,7 @@ export default function TextField({
 	name,
 	type = 'text',
 	label,
+	labelBold = false,
 	placeholder,
 	className = 'w-full',
 }: TextFieldPropsType) {
@@ -20,7 +21,10 @@ export default function TextField({
 			{label ? (
 				<label
 					htmlFor=""
-					className="inline-block text-[12px] leading-5"
+					className={clsx(
+						'inline-block text-[12px] leading-5',
+						labelBold && 'font-bold'
+					)}
 				>
 					{label}
 				</label>
