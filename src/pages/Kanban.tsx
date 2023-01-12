@@ -3,19 +3,11 @@ import Header from '../components/header';
 import useAuth from '../hooks/useAuth';
 import Task from '../modules/kanban/Task';
 import { getTodos } from '../services/kanban.service';
-
-type TodosType = {
-	id: number;
-	title: string;
-	description: string;
-	created_by: string;
-	created_at: Date;
-	updated_at: Date;
-};
+import type { TodoType } from '../types/kanban.type';
 
 export default function Kanban() {
 	const { accessToken } = useAuth();
-	const [todos, setTodos] = React.useState<TodosType[]>([]);
+	const [todos, setTodos] = React.useState<TodoType[]>([]);
 
 	const getTasks = React.useCallback(async () => {
 		const result = await getTodos(accessToken);
@@ -39,7 +31,7 @@ export default function Kanban() {
 				<div className="container">
 					<div className="min-w-min flex gap-4 py-6 last:pr-16">
 						{todos.map((todo) => (
-							<Task key={todo.id} />
+							<Task key={todo.id} todo={todo} />
 						))}
 					</div>
 				</div>
