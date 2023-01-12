@@ -10,10 +10,13 @@ type PayloadType = {
 
 export async function createUser(payload: PayloadType) {
 	try {
-		const res = await axios.post(`${config.baseUrlApi}/signup`, payload);
+		const res = await axios.post(`${config.apiHost}/signup`, payload);
 		return res.data;
-	} catch (error) {
-		return error;
+	} catch (error: any) {
+		return {
+			error: true,
+			message: error?.message,
+		};
 	}
 }
 
@@ -21,12 +24,12 @@ export async function login(
 	payload: Omit<PayloadType, 'name' | 'password_confirmation'>
 ) {
 	try {
-		const res = await axios.post(
-			`${config.baseUrlApi}/auth/login`,
-			payload
-		);
+		const res = await axios.post(`${config.apiHost}/auth/login`, payload);
 		return res.data;
-	} catch (error) {
-		return error;
+	} catch (error: any) {
+		return {
+			error: true,
+			message: error?.message,
+		};
 	}
 }
