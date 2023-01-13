@@ -41,3 +41,19 @@ export async function getTodos(accessToken: string | null) {
 		};
 	}
 }
+
+export async function getItems(accessToken: string | null, idTodo: number) {
+	try {
+		const res = await axios.get(`${config.apiHost}/todos/${idTodo}/items`, {
+			headers: {
+				authorization: `Bearer ${accessToken}`,
+			},
+		});
+		return res.data;
+	} catch (error: any) {
+		return {
+			error: true,
+			message: error?.message,
+		};
+	}
+}

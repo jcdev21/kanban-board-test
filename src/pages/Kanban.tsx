@@ -9,7 +9,7 @@ export default function Kanban() {
 	const { accessToken } = useAuth();
 	const [todos, setTodos] = React.useState<TodoType[]>([]);
 
-	const getTasks = React.useCallback(async () => {
+	const getListTodo = React.useCallback(async () => {
 		const result = await getTodos(accessToken);
 
 		if (result.error) {
@@ -21,8 +21,8 @@ export default function Kanban() {
 	}, []);
 
 	React.useEffect(() => {
-		getTasks();
-	}, [getTasks]);
+		getListTodo();
+	}, [getListTodo]);
 
 	return (
 		<>
