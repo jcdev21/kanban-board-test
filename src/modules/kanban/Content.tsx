@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card } from '../../components';
+import { Card, Progress } from '../../components';
 import { ContentPropsType } from '../../types/kanban.type';
 
 export default function Content({ task, length }: ContentPropsType) {
@@ -19,6 +19,9 @@ export default function Content({ task, length }: ContentPropsType) {
 				{task?.name}
 			</p>
 			<hr className="border border-dashed border-[#E0E0E0]" />
+			<Progress
+				value={task?.progress_percentage ? task.progress_percentage : 0}
+			/>
 		</Card>
 	);
 }

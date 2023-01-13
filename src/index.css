@@ -3,6 +3,21 @@
 	html {
 		@apply font-nunito;
 	}
+
+	progress::-webkit-progress-bar {
+		background-color: #ededed;
+		border: none;
+		border-radius: 9999px;
+		overflow: hidden;
+	}
+
+	progress[value='100']::-webkit-progress-value {
+		background-color: #43936c;
+	}
+
+	progress[data-nocomplete='1']::-webkit-progress-value {
+		background-color: #01959f;
+	}
 }
 @tailwind components;
 @tailwind utilities;
