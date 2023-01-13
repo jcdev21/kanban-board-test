@@ -10,32 +10,22 @@ import useAuth from '../../hooks/useAuth';
 export default function Task({ todo }: TaskPropsType) {
 	const keyTheme = Math.floor(Math.random() * 4);
 	const { accessToken } = useAuth();
-	const [tasks, setTasks] = React.useState<TaskType[]>([
-		{
-			id: 1,
-			name: 'Redesign page',
-			done: null,
-			todo_id: 1,
-			created_at: new Date('2021-04-21T00:12:06.116Z'),
-			updated_at: new Date('2021-04-21T00:12:06.116Z'),
-			progress_percentage: null,
-		},
-	]);
+	const [tasks, setTasks] = React.useState<TaskType[]>([]);
 
-	// const getTasks = React.useCallback(async () => {
-	// 	const result = await getItems(accessToken, todo.id);
+	const getTasks = React.useCallback(async () => {
+		const result = await getItems(accessToken, todo.id);
 
-	// 	if (result.error) {
-	// 		alert(result.message);
-	// 		return;
-	// 	}
+		if (result.error) {
+			alert(result.message);
+			return;
+		}
 
-	// 	setTasks(result);
-	// }, []);
+		setTasks(result);
+	}, []);
 
-	// React.useEffect(() => {
-	// 	getTasks();
-	// }, [getTasks]);
+	React.useEffect(() => {
+		getTasks();
+	}, [getTasks]);
 
 	return (
 		<div
@@ -53,6 +43,12 @@ export default function Task({ todo }: TaskPropsType) {
 			) : (
 				<Content length={0} />
 			)}
+			<button className="inline-flex gap-[5px] items-center">
+				<img src="/icons/u_plus-circle.svg" alt="icon u plus circle" />
+				<span className="text-[12px] leading-5 text-[#1D1F20]">
+					New Task
+				</span>
+			</button>
 		</div>
 	);
 }

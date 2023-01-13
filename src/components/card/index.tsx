@@ -6,11 +6,11 @@ type CardProps = {
 	className?: string;
 };
 
-export default function Card({ children, className = 'mb-3 py-4' }: CardProps) {
+export default function Card({ children, className = 'py-4' }: CardProps) {
 	return (
 		<div
 			className={clsx(
-				'bg-[#FAFAFA] border border-[#E0E0E)] rounded px-4',
+				'bg-[#FAFAFA] border border-[#E0E0E)] rounded px-4 mb-3 last-of-type:mb-2',
 				className
 			)}
 		>
