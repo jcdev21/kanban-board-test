@@ -7,6 +7,7 @@ type ButtonProps = {
 	size?: 'default' | 'small' | 'large';
 	variant?: 'primary' | 'secondary' | 'danger';
 	isDisabled?: boolean;
+	onClick?: () => void;
 };
 
 const buttonStyles = 'px-4 py-1 font-bold leading-6 rounded-lg shadow-sm';
@@ -17,6 +18,7 @@ export default function Button({
 	size = 'default',
 	variant = 'primary',
 	isDisabled = false,
+	onClick = () => {},
 }: ButtonProps) {
 	const className = clsx(
 		buttonStyles,
@@ -34,7 +36,12 @@ export default function Button({
 	);
 
 	return (
-		<button type={type} className={className} disabled={isDisabled}>
+		<button
+			type={type}
+			className={className}
+			disabled={isDisabled}
+			onClick={() => onClick()}
+		>
 			{label}
 		</button>
 	);
