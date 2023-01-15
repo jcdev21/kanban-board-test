@@ -54,9 +54,7 @@ const Modal = React.forwardRef(({ children, title }: ModalPropsType, ref) => {
 							<img src="/icons/close.svg" alt="icon close" />
 						</button>
 					</div>
-					<div id="modal-body" className="px-6">
-						{children}
-					</div>
+					<div id="modal-body">{children}</div>
 				</div>
 			</div>,
 			document.getElementById('modal-root')!

@@ -26,7 +26,7 @@ export default function Kanban() {
 
 	return (
 		<>
-			<Header />
+			<Header callback={getListTodo} />
 			<div className="relative top-16">
 				<div className="container">
 					<div className="min-w-min flex gap-4 py-6 last:pr-16">

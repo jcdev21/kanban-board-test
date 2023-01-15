@@ -1,19 +1,36 @@
 import React from 'react';
+import useAuth from '../../hooks/useAuth';
 import Button from '../button';
 import CustomForm from '../form';
+import Description from '../form/Description';
 import TextField from '../form/TextField';
 import Modal from '../modal';
+import { createTodo, getTodos } from '../../services/kanban.service';
 
-export default function Header() {
+type HeaderProps = {
+	callback: () => void;
+};
+
+export default function Header({ callback }: HeaderProps) {
+	const { accessToken } = useAuth();
 	const modalRef = React.useRef<any>();
 
 	const openModal = () => {
 		modalRef.current?.openModal();
 	};
 
-	const handleSaveNewGroup = (values: any) => {
+	const handleSaveNewGroup = async (values: any) => {
 		console.log(values);
+
+		const result = await createTodo(accessToken, values);
+
+		if (result.error) {
+			alert(result.message);
+			return;
+		}
+
 		modalRef.current?.closeModal();
+		callback();
 	};
 
 	return (
@@ -28,19 +45,20 @@ export default function Header() {
 			</header>
 			<Modal ref={modalRef} title="Add New Group">
 				<CustomForm onSubmit={handleSaveNewGroup}>
-					<TextField
-						name="email"
-						type="email"
-						label="Email"
-						placeholder="Email"
-					/>
-					<TextField
-						name="password"
-						type="password"
-						label="Password"
-						placeholder="Password"
-					/>
-					<div id="modal-footer" className="flex justify-end py-6">
+					<div className="px-6">
+						<TextField
+							name="title"
+							label="Title"
+							placeholder="Placeholder"
+						/>
+						<Description
+							name="description"
+							label="Description"
+							placeholder="Placeholder"
+							className="h-[88px]"
+						/>
+					</div>
+					<div className="flex justify-end p-6">
 						<Button type="submit" label="Submit" />
 					</div>
 				</CustomForm>
