@@ -20,8 +20,6 @@ export default function Header({ callback }: HeaderProps) {
 	};
 
 	const handleSaveNewGroup = async (values: any) => {
-		console.log(values);
-
 		const result = await createTodo(accessToken, values);
 
 		if (result.error) {

@@ -57,3 +57,27 @@ export async function getItems(accessToken: string | null, idTodo: number) {
 		};
 	}
 }
+
+export async function createItem(
+	accessToken: string | null,
+	idTodo: number,
+	payload: PayloadType
+) {
+	try {
+		const res = await axios.post(
+			`${config.apiHost}/todos/${idTodo}/items`,
+			payload,
+			{
+				headers: {
+					authorization: `Bearer ${accessToken}`,
+				},
+			}
+		);
+		return res.data;
+	} catch (error: any) {
+		return {
+			error: true,
+			message: error?.message,
+		};
+	}
+}

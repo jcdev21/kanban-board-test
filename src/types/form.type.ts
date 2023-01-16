@@ -1,5 +1,5 @@
 export type FormContextType = {
-	dataForm: { [key: string]: unknown };
+	dataForm: { [key: string]: string };
 	setDataForm: (name: string, value: string) => void;
 };
 
@@ -14,6 +14,7 @@ type CommonFieldType = {
 	labelBold?: boolean;
 	placeholder?: string;
 	className?: string;
+	defaultValue?: string;
 };
 
 export type TextFieldPropsType = CommonFieldType & {
